@@ -101,15 +101,6 @@ window.Shell = (function () {
   }
   function closeMobile() { document.body.classList.remove("nav-open"); }
 
-  // Tap di area gelap (overlay ::after) harus menutup sidebar mobile.
-  // ::after bukan node DOM asli, jadi event klik di atasnya bubbling
-  // dengan target === document.body — itu yang kita cek di sini.
-  document.addEventListener("click", function (e) {
-    if (document.body.classList.contains("nav-open") && e.target === document.body) {
-      closeMobile();
-    }
-  });
-
   function refreshBrain() {
     if (!refs.brain) return; UI.clear(refs.brain);
     var s = Brain.summary();
