@@ -84,6 +84,7 @@ window.Shell = (function () {
     }
     var setBtn = UI.el("button", { class: "navi", onclick: openSettings }, [UI.el("span", { class: "navi-ic" }, [UI.icon("settings")]), UI.el("span", { class: "navi-lbl", text: "Pengaturan" })]);
     var sidebar = UI.el("aside", { class: "sidebar" }, [brand, refs.rail, UI.el("div", { class: "nav-foot" }, [setBtn])]);
+    var overlay = UI.el("div", { class: "nav-overlay", onclick: closeMobile });
 
     refs.brain = UI.el("div", { class: "brainbar", onclick: openSettings });
     var burger = UI.el("button", { class: "burger", onclick: function () { document.body.classList.toggle("nav-open"); } }, [UI.icon("menu-2")]);
@@ -96,19 +97,10 @@ window.Shell = (function () {
     var topbar = UI.el("div", { class: "topbar" }, [burger, crumb, refs.brain, cmd]);
     refs.view = UI.el("main", { class: "view", id: "view" });
     var main = UI.el("div", { class: "main" }, [topbar, refs.view]);
-    app.appendChild(UI.el("div", { class: "shell" }, [sidebar, main]));
+    app.appendChild(UI.el("div", { class: "shell" }, [sidebar, overlay, main]));
     refreshBrain();
   }
   function closeMobile() { document.body.classList.remove("nav-open"); }
-
-  // Tap di area gelap (overlay ::after) harus menutup sidebar mobile.
-  // ::after bukan node DOM asli, jadi event klik di atasnya bubbling
-  // dengan target === document.body — itu yang kita cek di sini.
-  document.addEventListener("click", function (e) {
-    if (document.body.classList.contains("nav-open") && e.target === document.body) {
-      closeMobile();
-    }
-  });
 
   function refreshBrain() {
     if (!refs.brain) return; UI.clear(refs.brain);

@@ -44,6 +44,7 @@ a{color:var(--primary-deep,var(--primary));text-decoration:none}
 /* ---------- shell ---------- */
 .shell{display:grid;grid-template-columns:256px 1fr;min-height:100vh;max-width:1600px;margin:0 auto}
 .sidebar{padding:22px 16px 16px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;height:100vh;z-index:60}
+.nav-overlay{display:none}
 .brand{display:flex;align-items:center;gap:13px;padding:2px 8px 20px}
 .brand-logo{width:46px;height:46px;border-radius:15px;display:block;flex:none;box-shadow:var(--sh-soft)}
 .brand-txt{min-width:0}
@@ -306,7 +307,8 @@ input[type=range]{accent-color:var(--primary);width:100%}
   .shell{grid-template-columns:1fr}
   .sidebar{position:fixed;left:0;top:0;width:266px;transform:translateX(-100%);transition:transform .26s var(--ease);box-shadow:var(--sh-pop);background:var(--bg)}
   body.nav-open .sidebar{transform:none}
-  body.nav-open::after{content:"";position:fixed;inset:0;background:rgba(20,20,40,.4);z-index:55;cursor:pointer}
+  .nav-overlay{display:none;position:fixed;inset:0;background:rgba(20,20,40,.4);z-index:50;cursor:pointer}
+  body.nav-open .nav-overlay{display:block}
   .burger{display:grid}
   .crumb .today,.crumb .sep,.crumb>span:first-child{display:none}
   .brainbar .bb-niche{display:none}
