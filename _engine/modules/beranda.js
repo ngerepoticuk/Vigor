@@ -74,7 +74,7 @@ window.Shell.register({
         var c1 = UI.el("div", { class: "today-col" }, [UI.el("div", { class: "today-h" }, [UI.icon("flame"), "Kebiasaan"])]);
         hs.slice(0, 5).forEach(function (h) {
           var done = I.isDone(h.id, t);
-          var row = UI.el("button", { class: "today-item" + (done ? " on" : ""), onclick: function () { var c = S.get("checks", {}); c[h.id] = c[h.id] || {}; if (c[h.id][t]) delete c[h.id][t]; else c[h.id][t] = 1; S.set("checks", c); row.classList.toggle("on"); } }, [UI.el("span", { class: "ti-check" }, [UI.icon("check")]), UI.el("span", { style: "flex:1;text-align:left", text: h.nama }), UI.el("span", { class: "today-streak", text: "🔥" + I.streakOf(h.id) })]);
+          var row = UI.el("button", { class: "today-item" + (done ? " on" : ""), onclick: function () { var c = S.get("checks", {}); c[h.id] = c[h.id] || {}; if (c[h.id][t]) delete c[h.id][t]; else c[h.id][t] = 1; S.set("checks", c); row.classList.toggle("on"); } }, [UI.el("span", { class: "tdc-check" }, [UI.icon("check")]), UI.el("span", { style: "flex:1;text-align:left", text: h.nama }), UI.el("span", { class: "today-streak", text: "🔥" + I.streakOf(h.id) })]);
           c1.appendChild(row);
         });
         c1.appendChild(UI.el("button", { class: "today-more", onclick: function () { ctx.go("ritme"); } }, ["Semua →"]));
@@ -90,7 +90,7 @@ window.Shell.register({
             var key = r.id + ":" + i, on = !!rlog[key];
             if (on && shown >= 3) return; // prioritaskan yang belum
             shown++;
-            var row = UI.el("button", { class: "today-item" + (on ? " on" : ""), onclick: function () { var l = S.get("routineLog", {}); l[t] = l[t] || {}; if (l[t][key]) delete l[t][key]; else l[t][key] = 1; S.set("routineLog", l); row.classList.toggle("on"); } }, [UI.el("span", { class: "ti-check" }, [UI.icon("check")]), UI.el("span", { style: "flex:1;text-align:left", text: it.t })]);
+            var row = UI.el("button", { class: "today-item" + (on ? " on" : ""), onclick: function () { var l = S.get("routineLog", {}); l[t] = l[t] || {}; if (l[t][key]) delete l[t][key]; else l[t][key] = 1; S.set("routineLog", l); row.classList.toggle("on"); } }, [UI.el("span", { class: "tdc-check" }, [UI.icon("check")]), UI.el("span", { style: "flex:1;text-align:left", text: it.t })]);
             c2.appendChild(row);
           });
         });
@@ -101,13 +101,13 @@ window.Shell.register({
       var c3 = UI.el("div", { class: "today-col" }, [UI.el("div", { class: "today-h" }, [UI.icon("target"), "Prioritas & Tugas"])]);
       var top = (f.top || []).filter(function (x) { return x.t; });
       if (top.length) top.slice(0, 3).forEach(function (it, i) {
-        var row = UI.el("button", { class: "today-item" + (it.done ? " on" : ""), onclick: function () { var ff = S.get("focus", {}); ff[t] = ff[t] || { niat: "", top: [], blok: [] }; ff[t].top[i] = { t: it.t, done: !it.done }; S.set("focus", ff); row.classList.toggle("on"); } }, [UI.el("span", { class: "ti-check" }, [UI.icon("check")]), UI.el("span", { style: "flex:1;text-align:left", text: it.t })]);
+        var row = UI.el("button", { class: "today-item" + (it.done ? " on" : ""), onclick: function () { var ff = S.get("focus", {}); ff[t] = ff[t] || { niat: "", top: [], blok: [] }; ff[t].top[i] = { t: it.t, done: !it.done }; S.set("focus", ff); row.classList.toggle("on"); } }, [UI.el("span", { class: "tdc-check" }, [UI.icon("check")]), UI.el("span", { style: "flex:1;text-align:left", text: it.t })]);
         c3.appendChild(row);
       });
       else c3.appendChild(UI.el("button", { class: "today-item ghost", onclick: function () { ctx.go("fokus"); } }, [UI.icon("plus"), UI.el("span", { style: "flex:1;text-align:left", text: "Tetapkan 3 prioritas harimu" })]));
       tasks.forEach(function (x) {
         var over = x.tenggat < t;
-        var row = UI.el("button", { class: "today-item", onclick: function () { x.done = true; x.doneAt = Date.now(); S.update("tasks", x.id, x); row.classList.add("on"); UI.toast("Selesai ✓", "ok"); } }, [UI.el("span", { class: "ti-check" }, [UI.icon("check")]), UI.el("span", { style: "flex:1;text-align:left", text: x.teks }), UI.el("span", { class: "today-due" + (over ? " over" : ""), text: over ? "lewat" : "hari ini" })]);
+        var row = UI.el("button", { class: "today-item", onclick: function () { x.done = true; x.doneAt = Date.now(); S.update("tasks", x.id, x); row.classList.add("on"); UI.toast("Selesai ✓", "ok"); } }, [UI.el("span", { class: "tdc-check" }, [UI.icon("check")]), UI.el("span", { style: "flex:1;text-align:left", text: x.teks }), UI.el("span", { class: "today-due" + (over ? " over" : ""), text: over ? "lewat" : "hari ini" })]);
         c3.appendChild(row);
       });
       c3.appendChild(UI.el("button", { class: "today-more", onclick: function () { ctx.go("checklist"); } }, ["Semua →"]));

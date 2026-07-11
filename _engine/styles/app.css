@@ -678,10 +678,10 @@ input[type=range]{accent-color:var(--primary);width:100%}
 .today-h .ti{font-size:15px;color:var(--primary)}
 .today-item{display:flex;align-items:center;gap:10px;width:100%;padding:9px 11px;border-radius:12px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-family:var(--font-b);font-size:13px;font-weight:600;color:var(--ink);margin-bottom:7px;transition:.15s;text-align:left}
 .today-item:hover{border-color:var(--primary)}
-.today-item .ti-check{width:22px;height:22px;border-radius:8px;border:2px solid var(--line2);flex:none;display:grid;place-items:center;color:transparent;transition:.16s var(--spring)}
-.today-item .ti-check .ti{font-size:14px}
+.today-item .tdc-check{width:22px;height:22px;border-radius:8px;border:2px solid var(--line2);flex:none;display:grid;place-items:center;color:transparent;transition:.16s var(--spring)}
+.today-item .tdc-check .ti{font-size:14px}
 .today-item.on{opacity:.72}
-.today-item.on .ti-check{background:var(--primary);border-color:var(--primary);color:var(--on-primary)}
+.today-item.on .tdc-check{background:var(--primary);border-color:var(--primary);color:var(--on-primary)}
 .today-item.on span:nth-child(2){text-decoration:line-through}
 .today-item.ghost{border-style:dashed;color:var(--muted)}
 .today-streak{font-size:11px;color:var(--muted);flex:none}
