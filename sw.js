@@ -1,7 +1,7 @@
 /* sw.js — offline cache untuk Forge (PWA). Strategi: network-first
    utk file app (biar update masuk), cache-first utk CDN font/ikon. */
-const CACHE = "planner-forge-v3";
-const CORE = ["./", "./index.html", "./config.js", "./manifest.json", "./assets/logo.svg"];
+const CACHE = "planner-forge-v4-ai";
+const CORE = ["./", "./index.html", "./config.js", "./manifest.json", "./_engine/core/ai.js", "./assets/logo.svg"];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
 });
